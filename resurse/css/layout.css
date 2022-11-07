@@ -1,12 +1,65 @@
 body {
     --margin-main: 7%;
-    --background-pagina: pink;
-    --text-color: black;
-    --main-background: antiquewhite;
+    --background-pagina: #B0A0DE;
+    --text-color: dark;
+    --main-background: #7A7FFF;
 
     background-color: var(--background-pagina);
     color: var(--text-color);
+
+    --inaltime-meniu: 25px;
+    --latime-buton: 100px;
+    --culoare-meniu: black;
+    --culoare-meniu-text: white;
+    --culoare-meniu-selectat: white;
+    --latime-bord-meniu: 1px;
 }
+
+ul.meniu {
+    display: flex;
+    margin: 20px;
+    height: var(--inaltime-meniu);
+    line-height: var(--inaltime-meniu);
+    vertical-align: middle;
+    border: var(--latime-bord-meniu) solid black;
+    width: var(--latime-buton);
+    text-align: center;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+ul.meniu ul:hover{
+    animation-name: animatie_submeniu;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    transform-origin: 50% 0;
+    opacity:0;
+    display:block;
+}
+
+ul.meniu ul li{
+    height: var(--inaltime-meniu);
+    border:var(--latime-bord-meniu) solid black;
+    width:var(--latime-buton);
+}
+
+nav{
+    height:var(--inaltime-meniu);
+    background-color: var(--culoare-meniu);
+    color: white;
+    overflow: visible;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+}
+
+ul.meniu li:hover{
+    background-color: var(--culoare-meniu-selectat);
+}
+
 
 <!-- dark e clasa -->
 body.dark{
@@ -16,7 +69,7 @@ body.dark{
 }
 
 header{
-    background-color: aqua;
+    background-color: #C347D6;
 }
 
 main{
@@ -26,21 +79,20 @@ main{
 }
 
 footer{
-    background-color: lightgray;
+    background-color: #FA52C8;
 }
 
 #grid-pagina{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "z-acasa z-acasa z-acasa"
-                            "z-promotii z-promotii z-anunturi"
-    "z-orar z-orar z-orar"
-    "z-fig1 z-produse z-produse"
-        "z-fig2 z-produse z-produse"
-    "z-fig3 z-produse z-produse"
-    "z-intrebari z-intrebari z-intrebari";
-
-
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "z-meniu z-meniu z-meniu z-meniu"
+                         "z-acasa z-acasa z-acasa z-acasa"
+                         "z-acasa z-acasa z-acasa z-acasa"
+                         "z-online z-dashboard z-dashboard z-statistics"
+                         "z-events z-events z-tabel z-tabel"
+                         "z-anunturi z-anunturi z-tabel z-tabel"
+                         "z-diverse z-diverse z-diverse z-diverse"
+                         "z-footer z-footer z-footer z-footer";
 }
 
 #grid-pagina > *{
@@ -49,33 +101,40 @@ footer{
     padding: 0px;
 }
 
-#welcome{
-    grid-area:z-welcome;
+#meniu{
+    grid-area: z-meniu;
 }
 
-#promotii{
-    grid-area:z-promotii;
+#acasa{
+    grid-area: z-acasa;
 }
 
-#produse{
-    grid-area:z-produse;
+#online{
+    grid-area: z-online;
 }
 
-#orar{
-    grid-area:z-orar;
-}
-#fig1{
-    grid-area:z-fig1;
-}
-#fig2{
-    grid-area:z-fig2;
-}
-#fig3{
-    grid-area:z-fig3;
+#dashboard{
+    grid-area: z-dashboard;
 }
 
-#anunturi{
-    grid-area: z-anunturi;
+#statistics{
+    grid-area: z-statistics;
+}
+
+#events{
+    grid-area: z-events;
+}
+
+#tabel{
+    grid-area: z-tabel;
+}
+
+#diverse{
+    grid-area: z-diverse;
+}
+
+#footer{
+    grid-area: z-footer;
 }
 
 #index-intrebari{
@@ -83,11 +142,46 @@ footer{
 }
 
 @media screen and (max-width: 1200px) {
+    #grid-pagina{
+        display: block;
+    }
 
+    #grid-pagina > *{
+        font-size: large;
+    }
 }
 
 @media screen and (max-width: 700px) {
     #grid-pagina{
         display: block;
+    }
+
+    #grid-pagina > *{
+        font-size: medium;
+        transition: none !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #grid-pagina{
+        display: block;
+    }
+
+    #grid-pagina > *{
+        font-size: small;
+        transition: none !important;
+    }
+}
+
+@keyframes animatie_submeniu {
+
+    50%{
+        transform: scale(0.5,1);
+    }
+
+    100%{
+        transform: scale(1,1);
+
+        opacity:1;
     }
 }
