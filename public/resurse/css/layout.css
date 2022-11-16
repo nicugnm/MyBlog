@@ -7,57 +7,7 @@ body {
     background-color: var(--background-pagina);
     color: var(--text-color);
 
-    --inaltime-meniu: 25px;
-    --latime-buton: 100px;
-    --culoare-meniu: black;
-    --culoare-meniu-text: white;
-    --culoare-meniu-selectat: white;
-    --latime-bord-meniu: 1px;
-}
-
-ul.meniu {
-    display: flex;
-    margin: 20px;
-    height: var(--inaltime-meniu);
-    line-height: var(--inaltime-meniu);
-    vertical-align: middle;
-    border: var(--latime-bord-meniu) solid black;
-    width: var(--latime-buton);
-    text-align: center;
-    justify-content: space-between;
-    gap: 100px;
-}
-
-ul.meniu ul:hover{
-    animation-name: animatie_submeniu;
-    animation-duration: 2s;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-    transform-origin: 50% 0;
-    opacity:0;
-    display:block;
-}
-
-ul.meniu ul li{
-    height: var(--inaltime-meniu);
-    border:var(--latime-bord-meniu) solid black;
-    width:var(--latime-buton);
-}
-
-nav{
-    height:var(--inaltime-meniu);
-    background-color: var(--culoare-meniu);
-    color: white;
-    overflow: visible;
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100vw;
-}
-
-ul.meniu li:hover{
-    background-color: var(--culoare-meniu-selectat);
+    transition: all 1.5s linear;
 }
 
 
@@ -80,6 +30,36 @@ main{
 
 footer{
     background-color: #FA52C8;
+}
+
+#link-top{
+    position:fixed;
+    bottom:0.3em;
+    opacity:0.5;
+    left:0.3em;
+    width:3rem;
+    box-sizing: border-box;
+    height:3rem;
+    line-height:3rem;
+    text-align:center;
+    border:1px solid grey;
+    border-radius:100px;
+    background: rgb(220,220,220);
+}
+
+#link-top:hover{
+    opacity:1;
+}
+
+#triunghi{
+    height: 0px;
+    width: 0;
+    display:inline-block;
+    border-bottom:1.5rem solid grey;
+    border-left:1rem solid transparent;
+    border-right:1rem solid transparent;
+    vertical-align: top;
+    transform: translateY(30%);
 }
 
 #grid-pagina{
@@ -170,18 +150,5 @@ footer{
     #grid-pagina > *{
         font-size: small;
         transition: none !important;
-    }
-}
-
-@keyframes animatie_submeniu {
-
-    50%{
-        transform: scale(0.5,1);
-    }
-
-    100%{
-        transform: scale(1,1);
-
-        opacity:1;
     }
 }

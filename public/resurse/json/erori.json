@@ -5,7 +5,7 @@
         "text": "A survenit eroare.",
         "imagine":"interzis.png"
     },
-    "erori": [
+    "info_erori": [
         {
             "identificator":404,
             "status":true,

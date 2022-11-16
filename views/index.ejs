@@ -1,70 +1,16 @@
 <!DOCTYPE html>
 <html lang="ro">
-    <head id="header">
-        <title>TravelTense</title>
-
-        <meta name="author" content="Ghergu Nicolae-Marius">
-        <meta charset="UTF-8">
-        <meta name="keywords" content="travel, calatorii, story, aventura, distractie, peisaje, poze"">
-        <meta name="description" content="TravelTense este un website creat pentru a observa cele mai frumoase peisaje din lume.">
-
-
-        <link rel="shortcut icon" href="resurse/imagini/favicon.ico" type="image/x-icon"/>
-        
-
-		
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/resurse/imagini/favicon.ico" type="image/x-icon"/>
-
-        <link rel="stylesheet" href="/resurse/css/layout.css" type="text/css">
-
-        <!--
-        <link rel="stylesheet" href="/resurse/css/general.css" type="text/css"/>
-        <link rel="stylesheet" href="/resurse/css/nav.css" type="text/css"/>
-        <link rel="stylesheet" href="/resurse/css/galerie-statica.css" type="text/css"/>
-        <link rel="stylesheet" href="/resurse/css/nav-500.css" type="text/css" media="screen and (max-width:650px)"/>
-        <link rel="stylesheet" href="/resurse/css/general-1200.css" type="text/css" media="screen and (max-width:1200px)"/>
-		<link rel="stylesheet" href="/resurse/css/general-500.css" type="text/css" media="screen and (max-width:500px)"/>
-		<link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet"> 
--->
-        
-
-
-    </head>
+    <%- include("head.ejs") %>
+    <%- include("header.ejs") %>
     <body>
-    
-    <header>
-        <h1>Travel <span>Tense</span></h1>
-    <nav>
-        <ul class="meniu">
-                <li><a href="#acasa">Acasa</a></li>
-                <li><a href="#regiuni">Regiuni</a></li>
-                <ul>
-                    <li><a href="regiune-africa">Africa</a></li>
-                    <li><a href="regiune-america">America</a></li>
-                    <li><a href="regiunie-asia">Asia</a></li>
-                    <li><a href="regiune-europa">Europa</a></li>
-                    <li><a href="regiune-oceania">Oceania</a></li>
-                    <li><a href="regiune-polii">Polii</a></li>
-                    <li><a href="regiune-oceanele-terrei">Oceanele Terrei</a></li>
-                </ul>
-                <li><a href="#favorite">Favorite</a></li>
-                <li><a href="#sugestii">Sugestii</a></li>
-                <li><a href="#cont">Cont</a></li>
-                <ul>
-                    <li><a href="#inregistrare">Inregistrare</a></li>
-                    <li><a href="#autentificare">Autentificare</a></li>
-                </ul>
-        </ul>
-    </nav>
-    </header>
     <main>
         <div id="grid-pagina">
             <section id="acasa">
                 <h2>Bine ati venit</h2>
                 <p class="intro-sec1">Vă mulțumim că ne vizitați site-ul. Aici veți găsi informații foarte folositoare daca doriți să călătoriți și încă nu v-ați decis unde.</p>
                 <p class="intro-sec2">Vizionare placută!</p>
+                <p>Ip: <%- locals.ceva%> + <%- locals.altceva %> = <%- locals.ceva + locals.altceva%></p>
+                <p>Ip: <%- locals.ip%></p>
             </section>
             <section id="regiuni">
                 <h2>Regiuni</h2>
@@ -89,10 +35,10 @@
                         <a target="_blank" href="https://www.gimnaziu.info/america-tari-si-capitale">Detalii Regiunea America</a>
                     </p>
                     <picture>
-                        <source style="width: 45%; height: 45%" srcset="resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 500px)"/>
-                        <source style="width: 60%; height: 60%" srcset="resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 500px)"/>
-                        <source style="width: 100%; height: 100%" srcset="resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 1200px)"/>
-                        <img src="resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" alt="Poză cu harta regiunea America">
+                        <source style="width: 45%; height: 45%" srcset="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 500px)"/>
+                        <source style="width: 60%; height: 60%" srcset="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 500px)"/>
+                        <source style="width: 100%; height: 100%" srcset="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 1200px)"/>
+                        <img src="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" alt="Poză cu harta regiunea America">
                     </picture>
                     <p>Află mai multe despre această regiune și pe Wikipedia:</p>
                     <iframe src="https://ro.wikipedia.org/wiki/America" style="border: 50px solid red;" title="Wikipedia - Regiunea America"></iframe>
@@ -100,7 +46,7 @@
                     <p>Poate unul dintre faimoasele subiecte despre care ai auzit!</p>
                     <iframe src="https://ro.wikipedia.org/wiki/Descoperirea_Americii" style="border: 50px solid red;" title="Wikipedia - Descoperirea Americii"></iframe>
 
-                    <p>Descarcă imaginea care reprezintă harta regiunii America de aici: <a target="_blank" href="resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" download>Download</a></p>
+                    <p>Descarcă imaginea care reprezintă harta regiunii America de aici: <a target="_blank" href="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" download>Download</a></p>
 
 
                 </section>
@@ -115,6 +61,15 @@
                     <small><time datetime="2022-10-17">17 octombrie 2022</time>&copy; Pagina aparține în totalitate persoanei fizice Ghergu Nicolae-Marius, iar copierea informației nu este permisă. </small>
                 </footer>
             </section>
+            <section id="online">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="dashboard">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="statistics">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="events">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="tabel">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="anunturi">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="diverse">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
         </div>
+    </main>
     </body>
+    <%- include("footer.ejs") %>
 </html>
