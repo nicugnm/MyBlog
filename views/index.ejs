@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <%- include("head.ejs") %>
+    <%- include("header.ejs") %>
+    <body>
+    <main>
+        <div id="grid-pagina">
+            <section id="acasa">
+                <h2>Bine ati venit</h2>
+                <p class="intro-sec1">Vă mulțumim că ne vizitați site-ul. Aici veți găsi informații foarte folositoare daca doriți să călătoriți și încă nu v-ați decis unde.</p>
+                <p class="intro-sec2">Vizionare placută!</p>
+                <p>Ip: <%- locals.ceva%> + <%- locals.altceva %> = <%- locals.ceva + locals.altceva%></p>
+                <p>Ip: <%- locals.ip%></p>
+            </section>
+            <section id="regiuni">
+                <h2>Regiuni</h2>
+                <p class="regiuni-sec1">Poate cea mai frumoasă priveliște pe care ți-o dorești vedea este cum lumea se schimbă, în funcție poziția geografică.</p>
+                <p class="regiuni-sec2">Profită de această secțiune pentru a viziona superbele peisaje pe baza regiunii în care se află.</p>
+                <ul>
+                    <li><div class="regiuni-li1">Regiuni disponibile:</div></li>
+                    <li><a href="regiune-africa">Africa</a></li>
+                    <li><a href="regiune-america">America</a></li>
+                    <li><a href="regiunie-asia">Asia</a></li>
+                    <li><a href="regiune-europa">Europa</a></li>
+                    <li><a href="regiune-oceania">Oceania</a></li>
+                    <li><a href="regiune-polii">Polii</a></li>
+                    <li><a href="regiune-oceanele-terrei">Oceanele Terrei</a></li>
+                </ul>
+
+                <section id="regiune-america">
+                    <h3>Regiunea America</h3>
+                    <p class="regiune-america-descriere1"><b>Regiunea America</b> este una din cele mai mari regiuni de pe Terra. Ea se întinde pe o suprafață de aproximativ <em>42 milioane de km pătrați</em>.</p>
+                    <p class="regiune-america-descriere2">De asemenea, are și cel mai mare canion și cel mai cunosc din lume. Știai? Acesta se numește <b>'Marele Canion'</b>!</p>
+                    <p class="regiune-america-descriere3">Mai multe informații despre regiune se pot găsi aici:
+                        <a target="_blank" href="https://www.gimnaziu.info/america-tari-si-capitale">Detalii Regiunea America</a>
+                    </p>
+                    <picture>
+                        <source style="width: 45%; height: 45%" srcset="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 500px)"/>
+                        <source style="width: 60%; height: 60%" srcset="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 500px)"/>
+                        <source style="width: 100%; height: 100%" srcset="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 1200px)"/>
+                        <img src="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" alt="Poză cu harta regiunea America">
+                    </picture>
+                    <p>Află mai multe despre această regiune și pe Wikipedia:</p>
+                    <iframe src="https://ro.wikipedia.org/wiki/America" style="border: 50px solid red;" title="Wikipedia - Regiunea America"></iframe>
+                    <p>Totuși, nu-i așa că ți-am citit gândurile? Exact! Iată și despre <b>Descoperirea Americii</b></p>
+                    <p>Poate unul dintre faimoasele subiecte despre care ai auzit!</p>
+                    <iframe src="https://ro.wikipedia.org/wiki/Descoperirea_Americii" style="border: 50px solid red;" title="Wikipedia - Descoperirea Americii"></iframe>
+
+                    <p>Descarcă imaginea care reprezintă harta regiunii America de aici: <a target="_blank" href="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" download>Download</a></p>
+
+
+                </section>
+                <footer>
+                    <a href="#acasa" title="mergi sus">Mergi sus</a>
+                    <p><a href="tel:+40777777777">Sună-ne dacă dorești informații suplimentare!</a></p>
+                    <p><a href="https://www.google.com/maps/place/Facultatea+de+Matematic%C4%83+%C8%99i+Informatic%C4%83/@44.4355393,26.097398,17z/data=!3m1!4b1!4m5!3m4!1s0x40b1ff472f47f047:0x493984726f0235f9!8m2!3d44.4355355!4d26.0995867">
+                        Dorești să ne vizitezi? Vino la locația corespunzătoare!
+                    </a></p>
+                    <p><a href="https://api.whatsapp.com/send?phone=+4077777777">Trimite-ne un mesaj!</a></p>
+
+                    <small><time datetime="2022-10-17">17 octombrie 2022</time>&copy; Pagina aparține în totalitate persoanei fizice Ghergu Nicolae-Marius, iar copierea informației nu este permisă. </small>
+                </footer>
+            </section>
+            <section id="online">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="dashboard">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="statistics">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="events">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="tabel">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="anunturi">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="diverse">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+        </div>
+    </main>
+    </body>
+    <%- include("footer.ejs") %>
+</html>

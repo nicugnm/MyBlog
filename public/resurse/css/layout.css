@@ -1,0 +1,154 @@
+body {
+    --margin-main: 7%;
+    --background-pagina: #B0A0DE;
+    --text-color: dark;
+    --main-background: #7A7FFF;
+
+    background-color: var(--background-pagina);
+    color: var(--text-color);
+
+    transition: all 1.5s linear;
+}
+
+
+<!-- dark e clasa -->
+body.dark{
+    --background-pagina: black;
+    --text-color: white;
+    --main-background: gray;
+}
+
+header{
+    background-color: #C347D6;
+}
+
+main{
+    background-color: var(--main-background);
+    margin-left: var(--margin-main);
+    margin-right: var(--margin-main);
+}
+
+footer{
+    background-color: #FA52C8;
+}
+
+#link-top{
+    position:fixed;
+    bottom:0.3em;
+    opacity:0.5;
+    left:0.3em;
+    width:3rem;
+    box-sizing: border-box;
+    height:3rem;
+    line-height:3rem;
+    text-align:center;
+    border:1px solid grey;
+    border-radius:100px;
+    background: rgb(220,220,220);
+}
+
+#link-top:hover{
+    opacity:1;
+}
+
+#triunghi{
+    height: 0px;
+    width: 0;
+    display:inline-block;
+    border-bottom:1.5rem solid grey;
+    border-left:1rem solid transparent;
+    border-right:1rem solid transparent;
+    vertical-align: top;
+    transform: translateY(30%);
+}
+
+#grid-pagina{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "z-meniu z-meniu z-meniu z-meniu"
+                         "z-acasa z-acasa z-acasa z-acasa"
+                         "z-acasa z-acasa z-acasa z-acasa"
+                         "z-online z-dashboard z-dashboard z-statistics"
+                         "z-events z-events z-tabel z-tabel"
+                         "z-anunturi z-anunturi z-tabel z-tabel"
+                         "z-diverse z-diverse z-diverse z-diverse"
+                         "z-footer z-footer z-footer z-footer";
+}
+
+#grid-pagina > *{
+    border: 2px solid black;
+    margin: 0px;
+    padding: 0px;
+}
+
+#meniu{
+    grid-area: z-meniu;
+}
+
+#acasa{
+    grid-area: z-acasa;
+}
+
+#online{
+    grid-area: z-online;
+}
+
+#dashboard{
+    grid-area: z-dashboard;
+}
+
+#statistics{
+    grid-area: z-statistics;
+}
+
+#events{
+    grid-area: z-events;
+}
+
+#tabel{
+    grid-area: z-tabel;
+}
+
+#diverse{
+    grid-area: z-diverse;
+}
+
+#footer{
+    grid-area: z-footer;
+}
+
+#index-intrebari{
+    grid-area: z-intrebari;
+}
+
+@media screen and (max-width: 1200px) {
+    #grid-pagina{
+        display: block;
+    }
+
+    #grid-pagina > *{
+        font-size: large;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #grid-pagina{
+        display: block;
+    }
+
+    #grid-pagina > *{
+        font-size: medium;
+        transition: none !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #grid-pagina{
+        display: block;
+    }
+
+    #grid-pagina > *{
+        font-size: small;
+        transition: none !important;
+    }
+}
