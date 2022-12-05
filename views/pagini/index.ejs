@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="ro">
-    <%- include("head.ejs") %>
-    <%- include("header.ejs") %>
+    <%- include("../fragmente/head.ejs") %>
+    <%- include("../fragmente/header.ejs") %>
     <body>
     <main>
         <div id="grid-pagina">
             <section id="acasa">
-                <h2>Bine ati venit</h2>
+                <div id="container">
+                    <div id="text">
+                        Bine ati venit!
+                        <div id="text-reflectat">
+                            Bine ati venit!
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
                 <p class="intro-sec1">Vă mulțumim că ne vizitați site-ul. Aici veți găsi informații foarte folositoare daca doriți să călătoriți și încă nu v-ați decis unde.</p>
                 <p class="intro-sec2">Vizionare placută!</p>
-                <p>Ip: <%- locals.ceva%> + <%- locals.altceva %> = <%- locals.ceva + locals.altceva%></p>
-                <p>Ip: <%- locals.ip%></p>
             </section>
             <section id="regiuni">
                 <h2>Regiuni</h2>
@@ -35,10 +42,10 @@
                         <a target="_blank" href="https://www.gimnaziu.info/america-tari-si-capitale">Detalii Regiunea America</a>
                     </p>
                     <picture>
-                        <source style="width: 45%; height: 45%" srcset="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 500px)"/>
-                        <source style="width: 60%; height: 60%" srcset="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 500px)"/>
-                        <source style="width: 100%; height: 100%" srcset="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 1200px)"/>
-                        <img src="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" alt="Poză cu harta regiunea America">
+                        <source style="width: 45%; height: 45%" srcset="resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 500px)"/>
+                        <source style="width: 60%; height: 60%" srcset="resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 500px)"/>
+                        <source style="width: 100%; height: 100%" srcset="resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" media="(max-width 1200px)"/>
+                        <img src="resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" alt="Poză cu harta regiunea America">
                     </picture>
                     <p>Află mai multe despre această regiune și pe Wikipedia:</p>
                     <iframe src="https://ro.wikipedia.org/wiki/America" style="border: 50px solid red;" title="Wikipedia - Regiunea America"></iframe>
@@ -46,20 +53,10 @@
                     <p>Poate unul dintre faimoasele subiecte despre care ai auzit!</p>
                     <iframe src="https://ro.wikipedia.org/wiki/Descoperirea_Americii" style="border: 50px solid red;" title="Wikipedia - Descoperirea Americii"></iframe>
 
-                    <p>Descarcă imaginea care reprezintă harta regiunii America de aici: <a target="_blank" href="../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" download>Download</a></p>
+                    <p>Descarcă imaginea care reprezintă harta regiunii America de aici: <a target="_blank" href="../../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" download>Download</a></p>
 
 
                 </section>
-                <footer>
-                    <a href="#acasa" title="mergi sus">Mergi sus</a>
-                    <p><a href="tel:+40777777777">Sună-ne dacă dorești informații suplimentare!</a></p>
-                    <p><a href="https://www.google.com/maps/place/Facultatea+de+Matematic%C4%83+%C8%99i+Informatic%C4%83/@44.4355393,26.097398,17z/data=!3m1!4b1!4m5!3m4!1s0x40b1ff472f47f047:0x493984726f0235f9!8m2!3d44.4355355!4d26.0995867">
-                        Dorești să ne vizitezi? Vino la locația corespunzătoare!
-                    </a></p>
-                    <p><a href="https://api.whatsapp.com/send?phone=+4077777777">Trimite-ne un mesaj!</a></p>
-
-                    <small><time datetime="2022-10-17">17 octombrie 2022</time>&copy; Pagina aparține în totalitate persoanei fizice Ghergu Nicolae-Marius, iar copierea informației nu este permisă. </small>
-                </footer>
             </section>
             <section id="online">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
             <section id="dashboard">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
@@ -70,6 +67,6 @@
             <section id="diverse">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
         </div>
     </main>
+    <%- include("../fragmente/footer.ejs") %>
     </body>
-    <%- include("footer.ejs") %>
 </html>
