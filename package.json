@@ -1,0 +1,23 @@
+{
+  "name": "traveltense",
+  "version": "1.0.0",
+  "description": "TravelTense, your way to world!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicugnm/TravelTense.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicugnm/TravelTense/issues"
+  },
+  "homepage": "https://github.com/nicugnm/TravelTense#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2"
+  }
+}
