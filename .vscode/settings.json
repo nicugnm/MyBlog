@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/9112562a-72f1-4468-84e8-81de680fc80d/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/nicugnm-tehniciweb-app-service-1",
-    "appService.deploySubpath": "."
-}
