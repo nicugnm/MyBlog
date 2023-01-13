@@ -1,5 +1,7 @@
+const { timeStamp } = require('console')
 const express = require('express')
 const fs = require('fs')
+const { waitForDebugger } = require('inspector')
 
 const app = express()
 const port = 8080
@@ -59,3 +61,34 @@ function renderError(res, identificator, titlu, text, imagine) {
       })
    }
 }
+
+console.log("Starting connection to database...");
+
+const db = require("./app/models");
+
+db.sequelize.sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+});
+
+console.log(db.user.findAll())
+
+const jane = db.user.build({
+   user_id: 1,
+   firstname: "Jane",
+   lastname: "Doe",
+   email: "email@email.com",
+   password: "password",
+   birth_date: 971201,
+   role_id: 0
+});
+
+//jane.save()
+
+const repositories = require("./app/repositories");
+
+repositories.users.findUserById(db, 1)
+.then((info) => console.log("All users:", JSON.stringify(info)));
