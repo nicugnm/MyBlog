@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS
 CREATE TABLE IF NOT EXISTS
     users (
         user_id SERIAL,
+        username VARCHAR NOT NULL,
         firstname VARCHAR NOT NULL,
         lastname VARCHAR NOT NULL,
         email VARCHAR NOT NULL,

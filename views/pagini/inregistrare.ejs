@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <%- include("../fragmente/head.ejs") %>
+    <%- include("../fragmente/header.ejs") %>
+
+    <body>
+
+    <main>
+        <script type="text/javascript" src="/resurse/js/inregistrare.js"></script>
+    <div class="afisaj">
+        <h1>Inregistrare utilizator</h1>
+        
+		<% if (locals.err !="") { %>
+			<%-include("../fragmente/formular", {action: "/inregistrare"}) %>
+	<% } %>
+	<% if(locals.raspuns) { %>
+	<%- locals.raspuns+"<br/>"%>
+	<% } %>
+	<% if(locals.err) { %>
+	<%- locals.err %>
+	<% } %>
+    </div>
+    </main>
+    <%- include("../fragmente/footer.ejs") %>
+    </body>
+</html>
