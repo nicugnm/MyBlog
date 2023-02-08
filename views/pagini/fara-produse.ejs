@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <%- include("../fragmente/head.ejs") %>
+    <%- include("../fragmente/header.ejs") %>
+
+    <body>
+
+
+    <main>
+        <label> Nume: <input type="text" id="inp-nume"></label>
+        <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="70"> <span id="infoRange">(0)</span></label>
+
+        <div> Rating:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
+            <p><label>Foarte bun (4.5 - 5 stelute)
+                <input id="i_rad1"  name="gr_rad" value="4.50:5" type="radio"/>
+            </label></p>
+            <p><label>Bun (4 - 4.5 stelute)
+                <input id="i_rad2"  name="gr_rad" value="4:4.5" type="radio"/>
+            </label>
+            <p><label>Acceptabil (3.5 - 4 stelute)
+                <input id="i_rad3" name="gr_rad" value="3.5:4" type="radio"/>
+            </label>
+            <p><label>Rezonabil (&lt; 3.5 stelute)
+                <input id="i_rad3" name="gr_rad" value="0:3.5" type="radio"/>
+            </label>
+            <p><label>Toate
+                <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
+            </label>
+        </div>
+
+        <div>
+            <div class="btn btn-secondary" id="filtrare">Filtreaza</div>
+            <div class="btn btn-secondary" id="sortCrescNume">Sorteaza crescator dupa nume</div>
+            <div class="btn btn-secondary" id="sortDesccNume">Sorteaza descrescator dupa nume</div>
+        </div>
+        
+        <section id="locatii">
+            <h2>Locatii</h2>
+            <div id="err-coloane">
+                <div id="err-imag">
+                    <img src="<%- locals.imagine %>" />
+                </div>
+                <section>
+                    <h2><%- locals.noProducts.titlu %></h2>
+                    <p><%- locals.noProducts.text %></p>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer.ejs") %>
+    </body>
+</html>

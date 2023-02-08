@@ -2,36 +2,95 @@
 	"cale_galerie":"resurse/imagini/galerie",
 	"imagini": [
 		{
-			"fisier":"briose-frisca.png",
-			"descriere":"Brioșe",
-			"luni":["martie","februarie","iunie"]
+			"fisier":"cascada.jpeg",
+			"descriere":"Cascada",
+			"timp": "dimineata"
 		},
 		{
-			"fisier":"clatite.png",
-			"descriere":"Clătite cu dulceață",
-			"luni":["ianuarie","februarie","iunie"]
+			"fisier":"cascada-2.jpg",
+			"descriere":"Cascada",
+			"timp": "dimineata"
+		},
+		{
+			"fisier":"cascada-3.jpg",
+			"descriere":"Cascada",
+			"timp": "dimineata"
+		},
+		{
+			"fisier":"cascada-4.jpg",
+			"descriere":"Cascada",
+			"timp": "dimineata"
+		},
+		{
+			"fisier":"galicia-1.jpg",
+			"descriere":"Galicia",
+			"timp": "dimineata"
+		},
+		{
+			"fisier":"castel-2.jpg",
+			"descriere":"Castel",
+			"timp": "dimineata"
 			
 		},
 		{
-			"fisier":"gogosi.png",
-			"descriere":"Gogoși glazurate",
-			"luni":["ianuarie","februarie","iunie","martie"]
+			"fisier":"castelul-corvinilor.png",
+			"descriere":"Castelul Corvinilor",
+			"timp": "zi"
 		},
 		{
-			"fisier":"tort-scortisoara.png",
-			"descriere":"Tort cu scorțisoară"
+			"fisier":"cazino.jpg",
+			"descriere":"Cazino",
+			"timp": "zi"
 		},
 		{
-			"fisier":"prajitura-ciocolata.png",
-			"descriere":"Prăjitură cu ciocolată"
+			"fisier":"lac-1.webp",
+			"descriere":"Lac",
+			"timp": "zi"
 		},
 		{
-			"fisier":"tarta-afine.png",
-			"descriere":"Tartă cu afine"
+			"fisier":"india-1.jpg",
+			"descriere":"India",
+			"timp": "zi"
 		},
 		{
-			"fisier":"tort-trandafiri.png",
-			"descriere":"Tort special"
+			"fisier":"insula-2.webp",
+			"descriere":"Insula",
+			"timp": "zi"
+		},
+		{
+			"fisier":"insula-3.jpg",
+			"descriere":"Insula",
+			"timp": "zi"
+		},
+		{
+			"fisier":"lac.jpg",
+			"descriere":"Lac",
+			"timp": "noapte"
+		},
+		{
+			"fisier":"insula-4.webp",
+			"descriere":"Insula",
+			"timp": "noapte"
+		},
+		{
+			"fisier":"insula-5.jpeg",
+			"descriere":"Insula",
+			"timp": "noapte"
+		},
+		{
+			"fisier":"insula-6.webp",
+			"descriere":"Insula",
+			"timp": "noapte"
+		},
+		{
+			"fisier":"lac-1.webp",
+			"descriere":"Lac",
+			"timp": "noapte"
+		},
+		{
+			"fisier":"munte-4.jpeg",
+			"descriere":"Munte",
+			"timp": "noapte"
 		}
 	]
 }

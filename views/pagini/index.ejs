@@ -4,7 +4,9 @@
     <%- include("../fragmente/header.ejs") %>
     <body>
     <main>
-        <div id="grid-pagina">
+        <p id="watermark"></p>
+        <p id="absolut"></p>
+        <div class="flex">
             <section id="acasa">
                 <div id="container">
                     <div id="text">
@@ -16,9 +18,41 @@
                 </div>
 
                 <hr>
-                <p class="intro-sec1">Vă mulțumim că ne vizitați site-ul. Aici veți găsi informații foarte folositoare daca doriți să călătoriți și încă nu v-ați decis unde.</p>
-                <p class="intro-sec2">Vizionare placută!</p>
+                <div class="text-center">
+                    <p class="intro-sec1">Vă mulțumim că ne vizitați site-ul. Aici veți găsi informații foarte folositoare daca doriți să călătoriți și încă nu v-ați decis unde.</p>
+                    <p class="intro-sec2">Vizionare placută!</p>
+                </div>
             </section>
+            <div class="btn btn-primary" id="schimbare-font">Schimbare font</div>
+            <div>
+                <section id="galerie-statica">
+                    <div class="h2 text-center">Galerie</div>
+                    <div id="grid-galerie">
+                        <% for (let imag of locals.imagini) { 
+                            var d = new Date()
+                            var ora_imag = imag.timp
+                            var imag_timp = ["dimineata", "zi", "noapte"]
+                            var ora_r = d.getHours()
+                            if (imag.timp && imag_timp.includes(imag.timp)) {
+                                if (ora_r >= 5  && ora_r < 12 && imag.timp != "dimineata") continue;
+                                if (ora_r >= 12 && ora_r < 20 && imag.timp != "zi") continue;
+                                if (((ora_r >= 20 && ora_r <= 24) || (ora_r >= 0 && ora_r <= 5)) && imag.timp != "noapte") continue;
+                                %>
+                                <figure>
+                                    <picture>
+                                        <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)" />
+                                        <img src="<%- imag.fisier %>" alt="imagine">
+                                    </picture>
+                                    <figcaption><%- imag.descriere %></figcaption>
+                                </figure>
+                            <% }  %>
+                        <% }  %>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div id="grid-pagina">
             <section id="regiuni">
                 <h2>Regiuni</h2>
                 <p class="regiuni-sec1">Poate cea mai frumoasă priveliște pe care ți-o dorești vedea este cum lumea se schimbă, în funcție poziția geografică.</p>
@@ -27,7 +61,7 @@
                     <li><div class="regiuni-li1">Regiuni disponibile:</div></li>
                     <li><a href="regiune-africa">Africa</a></li>
                     <li><a href="regiune-america">America</a></li>
-                    <li><a href="regiunie-asia">Asia</a></li>
+                    <li><a href="regiune-asia">Asia</a></li>
                     <li><a href="regiune-europa">Europa</a></li>
                     <li><a href="regiune-oceania">Oceania</a></li>
                     <li><a href="regiune-polii">Polii</a></li>
@@ -54,9 +88,8 @@
                     <iframe src="https://ro.wikipedia.org/wiki/Descoperirea_Americii" style="border: 50px solid red;" title="Wikipedia - Descoperirea Americii"></iframe>
 
                     <p>Descarcă imaginea care reprezintă harta regiunii America de aici: <a target="_blank" href="../../public/resurse/imagini/regiuni/America-de-Nord-America-de-Sud.jpeg" download>Download</a></p>
-
-
                 </section>
+            </section>
             </section>
             <section id="online">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
             <section id="dashboard">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>

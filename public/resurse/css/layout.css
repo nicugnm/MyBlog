@@ -31,7 +31,6 @@ body {
     font-weight: bold;
 }
 
-<!-- dark e clasa -->
 body.dark{
     --background-pagina: black;
     --text-color: white;
@@ -68,18 +67,19 @@ footer{
 }
 
 #link-top:hover{
-    opacity:1;
+    opacity: 1;
 }
 
 #triunghi{
     height: 0px;
     width: 0;
-    display:inline-block;
-    border-bottom:1.5rem solid grey;
-    border-left:1rem solid transparent;
-    border-right:1rem solid transparent;
+    display: inline-block;
+    border-radius: 50%;
+    border-bottom: 1.5rem solid grey;
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
     vertical-align: top;
-    transform: translateY(30%);
+    transform: translateY(30%) rotateZ(-45deg);
 }
 
 div > p {
@@ -89,7 +89,8 @@ div > p {
 #grid-pagina{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "z-meniu z-meniu z-meniu z-meniu"
+    grid-template-areas: "z-galerie-statica z-galerie-statica z-schimbare-font z-schimbare-font"
+                         "z-meniu z-meniu z-meniu z-meniu"
                          "z-acasa z-acasa z-acasa z-acasa"
                          "z-acasa z-acasa z-acasa z-acasa"
                          "z-regiuni z-regiuni z-regiuni z-regiuni"
@@ -136,6 +137,14 @@ div > p {
 
 #events{
     grid-area: z-events;
+}
+
+#schimbare-font {
+    grid-area: z-schimbare-font;
+}
+
+#galerie-statica {
+    grid-area: z-galerie-statica;
 }
 
 #tabel{

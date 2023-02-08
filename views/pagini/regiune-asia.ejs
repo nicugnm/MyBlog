@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <%- include("../fragmente/head.ejs") %>
+    <%- include("../fragmente/header.ejs") %>
+    <body>
+
+    <main>
+        <script type="text/javascript" src="/resurse/js/locatii.js"></script>
+        <label> Nume: <input type="text" id="inp-nume"></label>
+        <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="300"> <span id="infoRange">(0)</span></label>
+
+        <div> Rating:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
+            <p><label>Foarte bun (4.5 - 5 stelute)
+                <input id="i_rad1"  name="gr_rad" value="4.50:5" type="radio"/>
+            </label></p>
+            <p><label>Bun (4 - 4.5 stelute)
+                <input id="i_rad2"  name="gr_rad" value="4:4.5" type="radio"/>
+            </label>
+            <p><label>Acceptabil (3.5 - 4 stelute)
+                <input id="i_rad3" name="gr_rad" value="3.5:4" type="radio"/>
+            </label>
+            <p><label>Rezonabil (&lt; 3.5 stelute)
+                <input id="i_rad3" name="gr_rad" value="0:3.5" type="radio"/>
+            </label>
+            <p><label>Toate
+                <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
+            </label>
+        </div>
+
+        <div>
+            <div class="btn btn-secondary" id="filtrare">Filtreaza</div>
+            <div class="btn btn-secondary" id="resetare">Reseteaza</div>
+            <div class="btn btn-secondary" id="sortCrescNume">Sorteaza crescator dupa nume</div>
+            <div class="btn btn-secondary" id="sortDesccNume">Sorteaza descrescator dupa nume</div>
+        </div>
+        
+        <section id="locatii">
+            <h2>Locatii</h2>
+            <div class="grid-locatii">
+                <% for( let loc of locals.locatiiRegiuneAsia) {%>
+                    <article class="locatie" >
+                        <h3 class="nume">Nume: <a href="<%-'resurse/imagini/regiuni/' + loc.region.region_name.toLowerCase() + '/' + loc.image_name %>" %></a><span class="val-nume"> <%- loc.name%></span></a></h3>
+                        <div class="info-prod">
+                            <p class="pret">Pret: <span class="val-pret"><%- loc.price%></span></p>
+                            <p class="descriere">Descriere:<span class="val-descriere"> <%- loc.description%></span></p>
+                            <p class="rating">Rating: <span class="val-rating"><%- loc.rating%></span></p>
+                        </div>
+                        <figure>
+                            <img src="<%-'resurse/imagini/regiuni/' + loc.region.region_name + '/' + loc.image_name %>" style="width:50%;height:auto;" alt="[imagine <%- loc.name %>]" />
+                        </figure>
+                    </article>
+                <% }%>
+            </div>
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

@@ -1,0 +1,204 @@
+body {
+  --inaltime-meniu: 25px;
+  --latime-buton: 200px;
+  --culoare-meniu: black;
+  --culoare-meniu-text: white;
+  --culoare-meniu-selectat: white;
+  --latime-bord-meniu: 1px;
+}
+
+ul.meniu {
+  display: flex;
+  margin: 20px;
+  height: var(--inaltime-meniu);
+  line-height: var(--inaltime-meniu);
+  vertical-align: middle;
+  border: var(--latime-bord-meniu) solid black;
+  width: 100%;
+  text-align: center;
+  justify-content: space-between;
+  list-style: none;
+}
+
+ul.meniu a {
+  color: white;
+  text-decoration: none;
+}
+ul.meniu ul {
+  display: none;
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  background-color: black;
+  color: white;
+  position: relative;
+  z-index: 10000;
+}
+ul.meniu ul li {
+  height: var(--inaltime-meniu);
+  border: var(--latime-bord-meniu) solid black;
+  width: 100%;
+  position: relative;
+  z-index: 10000;
+}
+ul.meniu ul li:hover {
+  background-color: lightgray;
+  color: black;
+}
+ul.meniu li {
+  position: relative;
+  width: 20%;
+  display: block;
+}
+ul.meniu li::after {
+  background-image: linear-gradient(to left, black, white);
+  width: 100%;
+  height: 5px;
+  display: block;
+  opacity: 0;
+  transition: all 1s linear;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: " ";
+}
+ul.meniu li:hover {
+  -webkit-animation-name: animatie_submeniu;
+          animation-name: animatie_submeniu;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  transform-origin: 50% 0;
+  opacity: 0;
+  display: block;
+}
+ul.meniu li:hover::after {
+  opacity: 1;
+}
+ul.meniu li:hover ul {
+  display: block;
+  color: black;
+}
+
+nav {
+  height: var(--inaltime-meniu);
+  background-color: var(--culoare-meniu);
+  color: white;
+  overflow: visible;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 10000;
+}
+
+@-webkit-keyframes animatie_submeniu {
+  100% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+@keyframes animatie_submeniu {
+  100% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 700px) {
+  ul.meniu {
+    display: none;
+  }
+}
+@media print {
+  h1 {
+    page-break-after: always;
+    margin-top: 50%;
+    text-align: center;
+    margin-left: 1cm;
+  }
+  iframe {
+    display: none;
+  }
+  #grid-pagina {
+    font-size: 10px;
+    box-sizing: border-box;
+    background-color: white;
+    grid-template-rows: calc(100vh - 10px) 100vh 100vh 100vh;
+    display: block;
+  }
+  html, body {
+    width: 210mm;
+    overflow: visible !important;
+  }
+  #grid-pagina div:nth-child(6) {
+    page-break-before: always;
+  }
+  ul.meniu {
+    display: none;
+  }
+  #link-top {
+    display: none;
+  }
+  #regiuni ul li a {
+    color: black;
+    text-decoration: none;
+  }
+  #regiune-america p a {
+    color: black;
+    text-decoration: none;
+  }
+  .footer > a {
+    color: black;
+  }
+  #watermark {
+    display: block;
+    position: fixed; /*apare pe toate paginile*/
+    bottom: 0;
+    color: rgba(0, 0, 0, 0.4);
+    right: 0;
+    width: 100px;
+    height: 2cm;
+    border: double;
+    opacity: 0.65;
+  }
+  #watermark::after {
+    opacity: 0.4;
+    padding: 5px;
+    display: block;
+    background: white;
+    border: 2px solid black;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-right: none;
+    content: "Copyright Ghergu Nicolae-Marius";
+  }
+  #end {
+    page-break-before: always;
+  }
+  footer a {
+    color: black;
+    text-decoration: none;
+  }
+}
+@page {
+  size: A4 portrait;
+  margin-bottom: 2cm;
+  margin-top: 2cm;
+  counter-increment: page;
+}
+@page :left {
+  margin-left: 2.5cm;
+  margin-right: 0.5cm;
+  border-radius: 20cm;
+}
+@page :right {
+  margin-right: 2.5cm;
+  margin-left: 0.5cm;
+}/*# sourceMappingURL=nav.css.map */

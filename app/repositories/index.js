@@ -1,7 +1,7 @@
 const repositories = {}
 
-const id = (id) => id
+repositories.users = require("./user.repository.js")
+repositories.invoices = require("./invoices.repository.js")
+repositories.places = require("./place.repository.js")
 
-repositories.users = require("./user.repository.js");
-
-module.exports = repositories;
+module.exports = repositories

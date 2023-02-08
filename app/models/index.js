@@ -1,26 +1,33 @@
-const dbConfig = require("../../config/db.config.js");
+const dbConfig = require("../../config/db.config.js")
 
-const Sequelize = require("sequelize");
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
+const Sequelize = require("sequelize")
+const sequelize = new Sequelize(dbConfig.sequelize.DB, dbConfig.sequelize.USER, dbConfig.sequelize.PASSWORD, {
+  host: dbConfig.sequelize.HOST,
+  dialect: dbConfig.sequelize.dialect,
   dialectOptions: {
     ssl: true
   },
   operatorsAliases: false,
 
   pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
+    max: dbConfig.sequelize.pool.max,
+    min: dbConfig.sequelize.pool.min,
+    acquire: dbConfig.sequelize.pool.acquire,
+    idle: dbConfig.sequelize.pool.idle
   }
-});
-const db = {};
+})
+const db = {}
 
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
+db.Sequelize = Sequelize
+db.sequelize = sequelize
 
-db.user = require("./user.models.js")(sequelize, Sequelize);
+db.user = require("./user.models.js")(sequelize, Sequelize)
+db.place = require("./places.models.js")(sequelize, Sequelize)
+db.region = require("./regions.models.js")(sequelize, Sequelize)
 
-module.exports = db;
+db.place.hasOne(db.region, {
+  sourceKey: 'region_id',
+  foreignKey: 'region_id'
+}) // place - region - one to one
+
+module.exports = db

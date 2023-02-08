@@ -17,13 +17,20 @@
   },
   "homepage": "https://github.com/nicugnm/TravelTense#readme",
   "dependencies": {
+    "@azure/cosmos": "^3.17.2",
+    "bootstrap": "^5.2.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "formidable": "^2.1.1",
+    "mysql2": "^3.0.1",
+    "node-sass": "^8.0.0",
+    "nodemailer": "^6.9.0",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "sharp": "^0.31.3",
+    "tedious": "^15.1.2"
   }
 }
