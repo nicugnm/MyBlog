@@ -36,23 +36,41 @@ CREATE TABLE permission_type
 INSERT INTO permission_type (permission_value)
 VALUES ('CREATE'), ('READ'), ('UPDATE'), ('DELETE');
 
-CREATE TABLE permissions
-(
-  permission_id INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
+CREATE TABLE
+    roles (
+        role_id INTEGER IDENTITY(1, 1),
+        role_name NVARCHAR(20)
+
+        PRIMARY KEY (role_id)
+    );
+
+
+-- DEFAULT role - 1
+INSERT INTO roles (role_name) VALUES ('DEFAULT');
+-- MODERATOR role - 2
+INSERT INTO roles (role_name) VALUES ('MODERATOR');
+-- ADMIN role - 3
+INSERT INTO roles (role_name) VALUES ('ADMIN');
+
+CREATE TABLE permissions (
+  permission_id INTEGER NOT NULL PRIMARY KEY IDENTITY(1, 1),
+  role_id INTEGER NOT NULL,
   permission_type_id INTEGER NOT NULL,
+  FOREIGN KEY (role_id) REFERENCES roles (role_id),
   FOREIGN KEY (permission_type_id) REFERENCES permission_type (permission_type_id),
   CHECK (dbo.IsValidPermissionType(permission_type_id) = 1)
 );
 
-CREATE TABLE
-    roles (
-        role_id INTEGER IDENTITY(1, 1),
-        permission_id INTEGER,
-
-        PRIMARY KEY (role_id),
-
-    CONSTRAINT fk_permission_id FOREIGN KEY (permission_id) REFERENCES permissions (permission_id)
-    );
+-- default user - only read - id 1
+INSERT INTO permissions (role_id, permission_type_id) VALUES (1, (SELECT permission_type_id FROM permission_type WHERE permission_type.permission_value = 'READ'));
+-- moderator user - read + update - id 2
+INSERT INTO permissions (role_id, permission_type_id) VALUES (2, (SELECT permission_type_id FROM permission_type WHERE permission_type.permission_value = 'READ'));
+INSERT INTO permissions (role_id, permission_type_id) VALUES (2, (SELECT permission_type_id FROM permission_type WHERE permission_type.permission_value = 'UPDATE'));
+-- admin user - create + read + update + delete - id 3
+INSERT INTO permissions (role_id, permission_type_id) VALUES (3, (SELECT permission_type_id FROM permission_type WHERE permission_type.permission_value = 'CREATE'));
+INSERT INTO permissions (role_id, permission_type_id) VALUES (3, (SELECT permission_type_id FROM permission_type WHERE permission_type.permission_value = 'READ'));
+INSERT INTO permissions (role_id, permission_type_id) VALUES (3, (SELECT permission_type_id FROM permission_type WHERE permission_type.permission_value = 'UPDATE'));
+INSERT INTO permissions (role_id, permission_type_id) VALUES (3, (SELECT permission_type_id FROM permission_type WHERE permission_type.permission_value = 'DELETE'));
 
 CREATE TABLE
     places (

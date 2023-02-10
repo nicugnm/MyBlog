@@ -1,6 +1,6 @@
 window.addEventListener("load",  () => {
 
-    document.getElementById("inp-pret").onchange = () => {
+    document.getElementById("inp-pret").onchange = function() {
         document.getElementById("infoRange").innerHTML = `(${this.value})`
     }
 
@@ -64,7 +64,7 @@ window.addEventListener("load",  () => {
                     return semn * nume_a.localeCompare(nume_b)
                 }
 
-                return semn * rating_a.localeCompare(rating_b)
+                return (rating_a - rating_b) * semn
             }
 
             return (pret_a-pret_b) * semn
@@ -72,14 +72,14 @@ window.addEventListener("load",  () => {
 
         for (let locatie of v_locatie) {
             locatie.parentNode.appendChild(locatie);
-        }       
+        }
     }
 
     document.getElementById("sortCrescNume").onclick = () => {
         sorteaza(1)
     }
 
-    document.getElementById("sortDescrescNume").onclick = () => {
+    document.getElementById("sortDescNume").onclick = () => {
         sorteaza(-1)
     }
 })

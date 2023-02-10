@@ -2,7 +2,8 @@ module.exports = (sequelize, Sequelize) => {
     const Place = sequelize.define("places", {
       place_id: {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
       },
       name: {
         type: Sequelize.STRING
@@ -21,6 +22,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       date: {
         type: Sequelize.DATE
+      },
+      rating: {
+        type: Sequelize.FLOAT
       }
     }, {
         timestamps: false

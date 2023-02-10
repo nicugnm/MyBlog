@@ -6,8 +6,18 @@
 
     <main>
         <script type="text/javascript" src="/resurse/js/locatii.js"></script>
-        <label> Nume: <input type="text" id="inp-nume"></label>
-        <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="300"> <span id="infoRange">(0)</span></label>
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating m-2 p-2">
+                    <input type="text" class="form-control" id="inp-nume" placeholder="">
+                    <label for="floatingInput">Nume</label>
+                </div>
+
+                <label for="customRange2" class="form-label m-2 p-2">Pret minim:</label>
+                <input type="range" id="inp-pret" class="form-range m-2 p-2" min="0" max="300" style="width: 50%" id="infoRange">
+                <span id="infoRange">(0)</span>
+            </div>
+        </div>
 
         <div> Rating:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
             <p><label>Foarte bun (4.5 - 5 stelute)
@@ -31,7 +41,7 @@
             <div class="btn btn-secondary" id="filtrare">Filtreaza</div>
             <div class="btn btn-secondary" id="resetare">Reseteaza</div>
             <div class="btn btn-secondary" id="sortCrescNume">Sorteaza crescator dupa nume</div>
-            <div class="btn btn-secondary" id="sortDesccNume">Sorteaza descrescator dupa nume</div>
+            <div class="btn btn-secondary" id="sortDescNume">Sorteaza descrescator dupa nume</div>
         </div>
         
         <section id="locatii">

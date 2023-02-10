@@ -92,7 +92,7 @@ app.get("/regiune-asia", (req, res) => {
    repositories.places.findPlacesWithRegion(db)
    .then(places => {
       placesFiltered = places.filter(place => place.region.region_name == 'REGIUNE-ASIA')
-      if (placesFiltered.lenght == 0) {
+      if (placesFiltered.length == 0) {
          res.render("pagini/fara-produse", {
             noProducts: {
                titlu: "Ops! Nu s-au gasit locatii!",
@@ -265,6 +265,10 @@ app.post("/inregistrare", (req, res) => {
        
        repositories.users.findMaxId(db)
          .then((maxId) => {
+            if (!maxId) {
+               maxId = 0
+            }
+
             const buildUser = db.user.build({
                user_id: maxId + 1,
                username: campuriText.username,
@@ -274,11 +278,13 @@ app.post("/inregistrare", (req, res) => {
                password: campuriText.parola,
                chat_color: campuriText.culoareText,
                birth_date: 220201,
-               role_id: 0
-            })
+               role_id: 1
+            }) // role_id default is 1 and is read
+
+            console.log("User built: " + JSON.stringify(buildUser))
       
-             const queryVerifUtiliz = repositories.users.findUserByUsername(db, username)
-             .then((databaseUser) => {
+            const queryVerifUtiliz = repositories.users.findUserByUsername(db, username)
+            .then((databaseUser) => {
                console.log("Username found:", JSON.stringify(databaseUser))
                if (databaseUser.length == 0) {
                   repositories.users.saveUser(buildUser)
@@ -286,7 +292,7 @@ app.post("/inregistrare", (req, res) => {
                      var token = genereazaToken(100)
                      trimiteMail(campuriText.username, campuriText.email, token)
                      eroare += "Utilizatorul a fost inregistrat cu succes! Te rugam sa verifici email-ul pentru confirmare!"
-                     es.render("pagini/inregistrare", { err: "", raspuns: "Date introduse" })
+                     res.render("pagini/inregistrare", { err: "", raspuns: eroare })
                   })
                   .catch((error) => {
                      eroare += "A aparut o eroare la baza de date!"
@@ -329,6 +335,7 @@ async function trimiteMail(username, email, token) {
       }
    })
 
+   const numeDomeniu = 'https://nicugnm-tehniciweb-app-service-1.azurewebsites.net'
    //genereaza html
    await transp.sendMail({
       from: process.env.MAIL_USER,
@@ -341,6 +348,14 @@ async function trimiteMail(username, email, token) {
    console.log("trimis mail")
 }
 
+sirAlphaNum = ""
+v_intervale = [[48,57], [65,90], [97,122]]
+for (let interval of v_intervale) {
+   for (let i = interval[0]; i <= interval[1]; i++) {
+      sirAlphaNum += String.fromCharCode(i)
+   }
+}
+
 function genereazaToken(lungime) {
     sirAleator = ""
 
@@ -351,8 +366,8 @@ function genereazaToken(lungime) {
     return sirAleator
 }
 
-repositories.invoices.saveInvoice('Id1', 'Name1', {
+/*repositories.invoices.saveInvoice('Id1', 'Name1', {
    prop1: "prop1"
 })
 .then(item => console.log('Item ' + JSON.stringify(item) + ' has been saved!'))
-.catch(err => console.log(err))
+.catch(err => console.log(err))*/
