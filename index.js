@@ -102,6 +102,37 @@ app.get("/regiune-europa", (req, res) => {
    })
 })
 
+app.get("/regiuni/:id", (req, res) => {
+   const eroare = obGlobal.erori.info_erori.find(elem => elem.identificator == 404)
+   const imagine = (eroare && obGlobal.erori.cale_baza + "/" + eroare.imagine) || obGlobal.erori.cale_baza + "/" + obGlobal.erori.eroare_default.imagine
+   repositories.places.findPlacesWithRegion(db)
+   .then(places => {
+      placesFiltered = places.filter(place => place.place_id == req.params.id)
+      if (placesFiltered.lenght == 0) {
+         res.render("pagini/fara-produse", {
+            noProducts: {
+               titlu: "Ops! Nu s-au gasit locatii!",
+               text: "Din pacate, nu s-au putut gasi locatii pe baza filtrelor..",
+               imagine: imagine
+            }
+         })
+      } else {
+         res.render("pagini/regiune-america", {
+            locatiiRegiuneAmerica: placesFiltered,
+            noProducts: {
+               titlu: "Ops! Nu s-au gasit locatii!",
+               text: "Din pacate, nu s-au putut gasi locatii pe baza filtrelor..",
+               imagine: imagine
+            }
+         })
+      }
+   })
+   .catch(err => {
+      eroare = "Eroare la baza de date pentru getPlacesWithRegion" + err
+      renderError(res, 500, eroare)
+   })
+})
+
 app.get("/regiune-america", (req, res) => {
    const eroare = obGlobal.erori.info_erori.find(elem => elem.identificator == 404)
    const imagine = (eroare && obGlobal.erori.cale_baza + "/" + eroare.imagine) || obGlobal.erori.cale_baza + "/" + obGlobal.erori.eroare_default.imagine
