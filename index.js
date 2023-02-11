@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/public/'))
 
 console.log(__dirname + '/public/')
 
-app.get(["/", "/index", "/home"], (req, res) => {
+app.get(["/", "/index", "/home", "/acasa"], (req, res) => {
 
    const eroare = obGlobal.erori.info_erori.find(elem => elem.identificator == 404)
    const imagine = (eroare && obGlobal.erori.cale_baza + "/" + eroare.imagine) || obGlobal.erori.cale_baza + "/" + obGlobal.erori.eroare_default.imagine
