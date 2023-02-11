@@ -168,6 +168,19 @@ nav {
     border: double;
     opacity: 0.65;
   }
+
+  #schimbare-font {
+    display: none;
+  }
+
+  #grid-galerie {
+    display: none;
+  }
+
+  .fig-caption {
+    display: none;
+  }
+
   #watermark::after {
     opacity: 0.4;
     padding: 5px;
