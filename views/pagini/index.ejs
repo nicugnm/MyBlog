@@ -91,13 +91,167 @@
                 </section>
             </section>
             </section>
-            <section id="online">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="online">
+                <h2>Calendar</h2>
+                <p>Observatie: afiseaza doar luna curentă (evenimentele sunt random)</p>
+                <div id="calendar">
+                    <div>L</div>
+                    <div>Ma</div>
+                    <div>Mi</div>
+                    <div>J</div>
+                    <div>V</div>
+                    <div>S</div>
+                    <div>D</div>
+                <% 
+                nrZile=[31,28,31,30,31,30,31,31,30,31,30,31];
+                
+                d=new Date(); //observatie: este data serverului nu a clinetului; codul ejs fiind compilat pe server
+                anCurent=d.getFullYear();
+                lunaCurenta=d.getMonth();
+                if(anCurent%400==0 || (anCurent%4==0 && anCurent%100!=0)) nrZile=29;
+                let nrZileCalendar=nrZile[lunaCurenta]
+                primaZiLuna=new Date(anCurent, lunaCurenta, 1);
+                ultimaZiLuna=new Date(anCurent, lunaCurenta, nrZileCalendar);
+                ziSaptPrimaZiLuna=(primaZiLuna.getDay()-1+7)%7;
+                ziSaptUltimaZiLuna=(ultimaZiLuna.getDay()-1+7)%7;
+                for (let i=0;i<ziSaptPrimaZiLuna;i++){
+                 %>
+                 <div></div> 
+                 <% } 
+            
+                 
+                 for (let i=1;i<=nrZileCalendar;i++){
+                    var obiectEvenimente=null;
+                        if(locals.evenimente)
+                             obiectEvenimente=locals.evenimente.find(function(elem){ return elem.data.valueOf()==new Date(anCurent,lunaCurenta,i).valueOf()})
+                     if(obiectEvenimente)
+                     {
+                     %>
+                     <div class="zi eveniment" title="<%= obiectEvenimente.text %>"><%= i %></div> 
+                     <%
+                     }
+                     else{
+                    %>
+                    <div class="zi"><%= i %></div> 
+                    <% } 
+                } %>
+                </div>
+                <%
+                dataServer=new Date();
+                sirData=dataServer.getHours()+":"+dataServer.getMinutes()+":"+dataServer.getSeconds()
+            
+                %>
+                <p>Pe localhost vor fi identice; se va observa diferența pe Heroku</p>
+                <p>Ora server:<span id="data_server"><%= sirData %></span></p>
+                <p>Ora client:<span id="data_client"></span></p>
+                <script>
+                    function zero(nr){
+                        if (nr<10) return "0"+nr;
+                        return nr;
+                    }
+                    
+                    d=new Date()
+                    document.getElementById("data_client").innerHTML=zero(d.getHours())+":"+zero(d.getMinutes())+":"+zero(d.getSeconds());
+            
+                    function actualizeazaElemData(id_div){
+                        var data_div=document.getElementById(id_div);
+                        if (data_div.innerHTML!="")
+                        {
+                            var timp=data_div.innerHTML.split(":")
+                            var dt=new Date(2000,1,15, timp[0],timp[1], timp[2] );//nu conteaza data (am pus valori random pentru an, luna si zi) ci timpul
+                        }
+                        else
+                            var dt=new Date();
+                        dt.setSeconds(dt.getSeconds()+1)
+                        data_div.innerHTML=zero(dt.getHours())+":"+zero(dt.getMinutes())+":"+zero(dt.getSeconds());
+                    }
+                    function actualizeazaData(){
+                        actualizeazaElemData("data_client");
+                        actualizeazaElemData("data_server");
+                    }
+                    actualizeazaData()
+                    setInterval(actualizeazaData,1000)
+                </script>
+                <p>Locatie: <%= locals.locatie %></p>
+            </section>
             <section id="dashboard">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
             <section id="statistics">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
             <section id="events">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
             <section id="tabel">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
             <section id="anunturi">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
-            <section id="diverse">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum eaque quam sapiente tenetur. Minus.</section>
+            <section id="diverse">
+                <h2>Orar</h2>
+                <table id="tab-orar">
+                    <thead>
+
+                        <tr>
+                            <th>Cod</th>
+                            <th>Perioadă</th>
+                            <th>Zi</th>
+                            <th>Interval dimineata</th>
+                            <th>Pauza de masa</th>
+                            <th>Interval seară</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td rowspan="5">Zile<br/>Lucrătoare</td>
+                            <td>Luni</td>
+                            <td>10-12</td>
+                            <td>12-14</td>
+                            <td>14-20</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            
+                            <td>Marti</td>
+                            <td>9-12</td>
+                            <td>12-14</td>
+                            <td>14-21</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            
+                            <td>Miercuri</td>
+                            <td>9-11</td>
+                            <td>11-13</td>
+                            <td>14-21</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            
+                            <td>Joi</td>
+                            <td>9-11</td>
+                            <td>11-13</td>
+                            <td>14-21</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            
+                            <td>Vineri</td>
+                            <td>9-12</td>
+                            <td>12-14</td>
+                            <td>14-19</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td rowspan="2">Weekend</td>
+                            <td>Sambata</td>
+                            <td>10-12</td>
+                            <td>12-13</td>
+                            <td>13-16</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Duminica</td>
+                            <td>10-14</td>
+                            <td>-</td>
+                            <td>inchis</td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </section>
         </div>
     </main>
     <%- include("../fragmente/footer.ejs") %>

@@ -1,5 +1,7 @@
 window.addEventListener("load",  () => {
 
+    document.getElementById("locatii-none").display = "none";
+
     document.getElementById("inp-pret").onchange = function() {
         document.getElementById("infoRange").innerHTML = `(${this.value})`
     }
@@ -17,6 +19,12 @@ window.addEventListener("load",  () => {
 
         const locatii = document.getElementsByClassName("locatie")
         
+
+        if (locatii.length == 0) {
+            document.getElementById("locatii").display = "none";
+            document.getElementById("locatii-none").display = "block";
+        }
+
         for (let locatie of locatii) {
             let cond1 = false, cond2 = false
             locatie.style.display = "none"

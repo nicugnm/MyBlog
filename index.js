@@ -2,7 +2,8 @@ const { render } = require('ejs');
 const express = require('express')
 const fs = require('fs')
 const nodemailer = require('nodemailer')
-const sharp=require("sharp");
+const request = require("request")
+const sharp = require("sharp")
 require('dotenv').config()
 
 const app = express()
@@ -16,11 +17,47 @@ app.use(express.static(__dirname + '/public/'))
 console.log(__dirname + '/public/')
 
 app.get(["/", "/index", "/home"], (req, res) => {
+
+   const eroare = obGlobal.erori.info_erori.find(elem => elem.identificator == 404)
+   const imagine = (eroare && obGlobal.erori.cale_baza + "/" + eroare.imagine) || obGlobal.erori.cale_baza + "/" + obGlobal.erori.eroare_default.imagine
+
+   var evenimente=[]
+   var locatie="";
+            
+            request('https://secure.geobytes.com/GetCityDetails?key=7c756203dbb38590a66e01a5a3e1ad96&fqcn=https://nicugnm-tehniciweb-app-service-1.azurewebsites.net/', //se inlocuieste cu req.ip; se testeaza doar pe Heroku
+                function (error, response, body) {
+                    locatie="Nu se poate detecta pentru moment."
+                if(error) {
+                    
+                    console.error('eroare geobytes:', error)
+                }
+                else{
+                    var obiectLocatie=JSON.parse(body);
+                    console.log(obiectLocatie);
+                    locatie=obiectLocatie.geobytescountry+" "+obiectLocatie.geobytesregion
+                }
+    
+                //generare evenimente random pentru calendar 
+                
+                var texteEvenimente=["Eveniment important", "Festivitate", "Prajituri gratis", "Zi cu soare", "Aniversare"];
+                dataCurenta=new Date();
+                for(i=0;i<texteEvenimente.length;i++){
+                    evenimente.push({data: new Date(dataCurenta.getFullYear(), dataCurenta.getMonth(), Math.ceil(Math.random()*27) ), text:texteEvenimente[i]});
+                }
+               });
+
    res.render("pagini/index", {
       ip: getIp(req),
       ceva: 10,
       altceva: 2,
-      imagini: obGlobal.imagini
+      imagini: obGlobal.imagini,
+      locatie: locatie,
+      evenimente: evenimente,
+      noProducts: {
+         titlu: "Ops! Nu s-au gasit locatii!",
+         text: "Din pacate, nu s-au putut gasi locatii pe baza filtrelor..",
+         imagine: imagine
+      }
    })
 
    //console.log("Imagini = " + obGlobal.imagini)
@@ -50,7 +87,12 @@ app.get("/regiune-europa", (req, res) => {
          })
       } else {
          res.render("pagini/regiune-america", {
-            locatiiRegiuneAmerica: placesFiltered
+            locatiiRegiuneAmerica: placesFiltered,
+            noProducts: {
+               titlu: "Ops! Nu s-au gasit locatii!",
+               text: "Din pacate, nu s-au putut gasi locatii pe baza filtrelor..",
+               imagine: imagine
+            }
          })
       }
    })
@@ -76,7 +118,12 @@ app.get("/regiune-america", (req, res) => {
          })
       } else {
          res.render("pagini/regiune-america", {
-            locatiiRegiuneAmerica: placesFiltered
+            locatiiRegiuneAmerica: placesFiltered,
+            noProducts: {
+               titlu: "Ops! Nu s-au gasit locatii!",
+               text: "Din pacate, nu s-au putut gasi locatii pe baza filtrelor..",
+               imagine: imagine
+            }
          })
       }
    })
@@ -102,7 +149,12 @@ app.get("/regiune-asia", (req, res) => {
          })
       } else {
          res.render("pagini/regiune-asia", {
-            locatiiRegiuneAsia: placesFiltered
+            locatiiRegiuneAsia: placesFiltered,
+            noProducts: {
+               titlu: "Ops! Nu s-au gasit locatii!",
+               text: "Din pacate, nu s-au putut gasi locatii pe baza filtrelor..",
+               imagine: imagine
+            }
          })
       }
    })
@@ -246,17 +298,15 @@ app.post("/inregistrare", (req, res) => {
    formular.parse(req, function(err, campuriText, campuriFile) {
        console.log(campuriText)
        console.log("Email: ", campuriText.email)
-       //verificari - TO DO 
+      
        var eroare = ""
        if (!campuriText.username) {
            eroare += "Username-ul nu poate fi necompletat."
        }
-       //TO DO - de completat pentru restul de campuri required
 
        if (!campuriText.username.match("^[A-Za-z0-9]+$")) {
            eroare += "Username-ul trebuie sa contina doar litere mici/mari si cifre."
        }
-       //TO DO - de completat pentru restul de campuri functia match
 
        if (eroare != "") {
            res.render("pagini/inregistrare", { err: eroare })
@@ -289,7 +339,7 @@ app.post("/inregistrare", (req, res) => {
                if (databaseUser.length == 0) {
                   repositories.users.saveUser(buildUser)
                   .then((message) => {
-                     var token = genereazaToken(100)
+                     const token = genereazaToken(100)
                      trimiteMail(campuriText.username, campuriText.email, token)
                      eroare += "Utilizatorul a fost inregistrat cu succes! Te rugam sa verifici email-ul pentru confirmare!"
                      res.render("pagini/inregistrare", { err: "", raspuns: eroare })

@@ -29,6 +29,7 @@
     "nodemailer": "^6.9.0",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
+    "request": "^2.88.2",
     "sequelize": "^6.28.0",
     "sharp": "^0.31.3",
     "tedious": "^15.1.2"

@@ -25,10 +25,16 @@ module.exports.saveInvoice = async (id, name, content) => {
     })
 }
 
-module.exports.getInvoice = async (id) => {
+module.exports.getInvoiceById = async (id) => {
     const container = await createDbAndContainerOrGet()
 
     return await container.item(id).read()
+}
+
+module.exports.getInvoiceByName = async (name) => {
+    const container = await createDbAndContainerOrGet()
+
+    return await container.item(name).read()
 }
 
 module.exports.updateInvoice = async (id, name, content) => {
